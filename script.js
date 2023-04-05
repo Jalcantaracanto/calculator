@@ -1,57 +1,60 @@
 var displayDiv = document.querySelector("#display");
-var op = ""
-var number = 0
-
-
-console.log(displayDiv.innerText)
+var num1 = null
+var num2 = null
+var op = null
 
 
 function press(num) {
-    var initializer = displayDiv.innerText
-    var temp = ""
-    if (num == ".") {
-        displayDiv.innerText = displayDiv.innerText + num
-        initializer = displayDiv.innerText
-    } else if (initializer === "0") {
-        displayDiv.innerText = num
-    } else {
-        displayDiv.innerText = displayDiv.innerText + num
-    }
+    num1 += num
+    displayDiv.innerText = num1
 }
 
-function setOP(operator){
-    if(operator == "/"){
-        op = "/"
-        number = displayDiv.innerText
-        console.log(op)
-        console.log(number)
-    }else if(operator == "*"){
-        op = "*"
-        number = displayDiv.innerText
-    }else if(operator == "-"){
-        op = "-"
-        number = displayDiv.innerText
-    }else{
-        op = "+"
-        number = displayDiv.innerText
+function setOP(operator) {
+    if (num1 == "") {
+        num1 = "0"
     }
-    return op
+    op = operator
+    num2 = num1
+    num1 = ""
 }
 
-function calculate(){
-    var result = 0
-    if(op == "/"){
-        result = number / displayDiv.innerText
-        displayDiv.innerText = result
-    }else if(op == "*"){
-        result = number * displayDiv.innerText
-        displayDiv.innerText = result
-    }else if(op == "-"){
-        result = number - displayDiv.innerText
-        displayDiv.innerText = result
-    }else{
-        sum = displayDiv.innerText
-        result = parseFloat(number) + parseFloat(sum)
-        displayDiv.innerText = result
-    } 
+function calculate() {
+    x = parseFloat(num1)
+    y = parseFloat(num2)
+    result = 0
+    switch (op){
+        case "/":
+            result = y / x
+            break
+        case "*":
+            result = x * y
+            break
+        case "-":
+            result = y - x
+            break
+        case "+":
+            result = x + y
+            break
+    }
+    displayDiv.innerText = result
+    num1 = result
+    op = null
 }
+
+function clr() {
+    num1 = null
+    num2 = null
+    op = null
+    displayDiv.innerText = "0"
+}
+
+// if (op == "/") {
+//     result = y / x
+// } else if (op == "*") {
+//     result = x * y
+// } else if (op == "-") {
+//     result = y - x
+// } else {
+//     result = x + y
+// }
+
