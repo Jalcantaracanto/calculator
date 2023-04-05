@@ -1,60 +1,48 @@
 var displayDiv = document.querySelector("#display");
-var num1 = null
-var num2 = null
-var op = null
+var num1 = ""
+var num2 = ""
+var op = ""
 
 
 function press(num) {
-    num1 += num
+    num1 = num1 + num
     displayDiv.innerText = num1
 }
 
-function setOP(operator) {
-    if (num1 == "") {
+function setOP(operador) {
+    if(num1 == ""){
         num1 = "0"
     }
-    op = operator
+    op = operador
     num2 = num1
     num1 = ""
 }
 
 function calculate() {
-    x = parseFloat(num1)
-    y = parseFloat(num2)
-    result = 0
-    switch (op){
+    var x = parseFloat(num2)
+    var y = parseFloat(num1)
+
+    switch (op) {
         case "/":
-            result = y / x
+            result = x / y
             break
         case "*":
             result = x * y
             break
-        case "-":
-            result = y - x
-            break
         case "+":
             result = x + y
+            break
+        case "-":
+            result = x - y
             break
     }
     displayDiv.innerText = result
     num1 = result
-    op = null
+    op = ""
 }
 
-function clr() {
-    num1 = null
-    num2 = null
-    op = null
+function clr(){
+    num1 = ""
+    num2 = ""
     displayDiv.innerText = "0"
 }
-
-// if (op == "/") {
-//     result = y / x
-// } else if (op == "*") {
-//     result = x * y
-// } else if (op == "-") {
-//     result = y - x
-// } else {
-//     result = x + y
-// }
-
