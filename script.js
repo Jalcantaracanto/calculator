@@ -24,7 +24,7 @@ function calculate() {
 
     switch (op) {
         case "/":
-            result = x / y
+            result = x / y 
             break
         case "*":
             result = x * y
